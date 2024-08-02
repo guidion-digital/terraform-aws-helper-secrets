@@ -22,6 +22,6 @@ resource "aws_secretsmanager_secret_rotation" "these" {
   rotation_lambda_arn = var.secrets[each.key].rotation_configuration.lambda_arn
 
   rotation_rules {
-    automatically_after_days = var.secrets[each.key].rotation_configuration.days
+    schedule_expression = var.secrets[each.key].rotation_configuration.schedule_expression
   }
 }

@@ -11,8 +11,8 @@ run "secrets" {
     kms_key_id                     = "foobar"
 
     rotation_configuration = {
-      lambda_arn = "arn:aws:lambda:eu-central-1:123456789012:function:you-secret-rotator"
-      days       = 7
+      lambda_arn          = "arn:aws:lambda:eu-central-1:123456789012:function:you-secret-rotator"
+      schedule_expression = "rate(1 day)"
     }
 
     policy = {
@@ -47,4 +47,3 @@ run "secrets" {
     error_message = "Secrets were not created"
   }
 }
-
