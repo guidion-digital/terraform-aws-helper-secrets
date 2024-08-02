@@ -15,8 +15,8 @@ variable "secrets" {
     recovery_window_in_days        = optional(number, 7)
     force_overwrite_replica_secret = optional(bool, false)
     rotation_configuration = optional(object({
-      lambda_arn = string
-      days       = number
+      lambda_arn          = string
+      schedule_expression = string
     }), null)
   }))
 }
