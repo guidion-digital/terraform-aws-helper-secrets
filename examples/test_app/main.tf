@@ -35,10 +35,28 @@ module "secrets" {
       })
 
       rotation_configuration = {
-        lambda_arn          = "arn:aws:lambda:eu-central-1:123456789012:function:you-secret-rotator"
+        lambda_arn          = module.secret_rotator.lambda_function_arn
         schedule_expression = "rate(1 day)"
       }
 
     }
   }
 }
+
+### BEGIN EXISTING RESOURCES ###
+#
+# These resources should already exist outside this module
+
+module "secret_rotator" {
+  source  = "terraform-aws-modules/lambda/aws"
+  version = "7.7.1"
+
+  publish = true
+
+  function_name = "rotate-secret-x"
+  handler       = "debug.handler"
+  runtime       = "python3.9"
+  source_path   = "./rotation-lambda"
+}
+
+### END EXISTING RESOURCES ###
