@@ -8,6 +8,10 @@ on:
 jobs:
   tests-plan:
     uses: guidion-digital/terrappy/.github/workflows/tfc-test-helper-module-plan.yaml@v1
+    permissions:
+      # issues: write
+      # contents: read
+      pull-requests: read
 
   release-dry-run:
     needs: tests-plan
